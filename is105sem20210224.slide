@@ -12,12 +12,16 @@ Undervisningsteam IS-105 V21
 - noen krav til hva som skal kodes? vi snakket om å skrive ut navn; er en annen oppgave mer hensiktsmessig?
 
 * Figur 1
-.image github-rett-etter-at-man-har-laget-en-ny-repo.png
+.image github-rett-etter-at-man-har-laget-en-ny-repo.png 1200 700
 
 * Mulige scenarioer for feil
 - https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
 
-
+* Case?
+- Multivaluta rapport 
+- Overnatting Sevilla, Antall personer: 5, Pris per person: 1200 Euro, Totalt: 6000 Euro
+- Fly Norge <-> Spania, Antall personer: 5, Pris per person: 3000 NOK, Totalt: 15000 NOK
+-                                                                   Totalt NOK: ??? 
 
 
 
