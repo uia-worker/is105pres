@@ -3,6 +3,25 @@ Intro git og Github
 
 Undervisningsteam IS-105 V21
 
+* Samarbeid om å skrive programmer
+Programvare som brukes av mange Homo sapiens (som operativsystemer, databasesystemer, utviklingsrammeverk) er et dynamisk artefakt, stadig under endring. Derfor blir det en nødvendighet å administrere *VERSJONER* av programvare.
+
+.image git-flow-distributed-and-centralized.png 385 565
+Fra en webartikkel skrevet av Vincent Driessen 5. Januar 2010 [[https://nvie.com/posts/a-successful-git-branching-model/][A successful Git branching model]]. 
+
+* Om git (1)
+- laget av Linus Torvalds i 2005 spesielt for utvikling av Linux kjerne (kernel.org)
+- et distribuert kildekode versjons kontroll system (sannsynligvis bør skrives i ett ord på norsk)
+- fordeler med distribusjon er blant annet datasikkerhet, - kildekode er spredt på mange noder; hvis en node feiler, kan man finne det meste hos andre noder
+- ingen innviklet rettighetsadministrasjonssystem, som i sentrale versjons kontroll systemer som CVS og Subversion 
+
+* Om git (2)
+- når git er installert på en regnemaskin, oppfører den seg både som klient og som server; hovedoperasjoner er lagring og henting av data til og fra en lokal database (kommandoen `git` `init` genererer en slik database); i tillegg kan man sende og hente data fra andres databaser (`git` `push` og `git` `pull`)
+- man kan også kopiere hele databaser fra andre med `git` `clone`; man kan arbeide på kode lokalt, uten å endre en kode i produksjon (forklare begrepet?) og så sende endringene til andre databser (distribuere); så kan man slette hele sin lokale basen og klone på nytt igjen neste gang (eventuelt på en annen regnemaskin)
+
+* Figure 1
+.image git-video-linustorvalds2007.png 500 650
+Fra presentasjonen til Linus Torvalds 3. Mai 2007 [[https://www.youtube.com/watch?v=MjIPv8a0hU8][Linus Torvalds on git]].
 
 *  Oppgavekrav
 - git er installert på regnemaskin 
@@ -11,24 +30,59 @@ Undervisningsteam IS-105 V21
 - samarbeid med andre gruppemedlemmer er demonstrert i Github gjennom Issues og Pull Request
 - noen krav til hva som skal kodes? vi snakket om å skrive ut navn; er en annen oppgave mer hensiktsmessig?
 
-* Figur 1
-.image github-rett-etter-at-man-har-laget-en-ny-repo.png 700 1200
+* Figur 2 (fra prosessen for å lage en ny repository)
+*repository* har ingen etablert norsk oversettelse. *programvarelager* brukes noen steder, men vi skal bruke *repository* eller en kortere versjon *repo* gjennomgående i IS-105.
+.image github-rett-etter-at-man-har-laget-en-ny-repo.png 450 850
 
 * Mulige scenarioer for feil
 - https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
 
 * Case?
-- Multivaluta rapport 
+- Multivaluta-applikasjon 
 - Overnatting Sevilla, Antall personer: 5, Pris per person: 1200 Euro, Totalt: 6000 Euro
 - Fly Norge <-> Spania, Antall personer: 5, Pris per person: 3000 NOK, Totalt: 15000 NOK
 -                                                                   Totalt NOK: ??? 
 
+* Bruksscenarioer
+Begrepet, som brukes her, er BRUKSSCENARIO, som kan tolkes som et mer generelt begrep enn, for eksempel, BRUKERSCENARIO, da det ikke direkte implikerer en BRUKER (eller en BRUKERROLLE).
 
+Aktuelle bruksscenarioer (BS) for en multivaluta-applikasjon kan være:
+- (BS1) applikasjonen skal kunne summere to størrelser i to forskjellige valutaer og konvertere resultatet til en valgt valuta, gitt en mengde valutakurser
+- (BS2) applikasjonen skal kunne multiplisere en verdi (antall personer) med et tall (pris) og returnere resultatet
 
+* Om Java program (1) 
+- en tekst med en spesifikk språksyntaks og spesifikk form, som er navngitt med ordet *Java* og som har et FILETTERNAVN *.java* (FILNAVN for et Java program må være det samme som navnet for hovedklassen, som defineres inn i selve filen, for eksempel *class* *Main* *{}*)
+- denne teksten beskriver instruksjoner, som vil gjøre noe for en PROGRAMMERER (rolle) ved hjelp av en spesifikk type regnemaskiner (artefakter, innretninger)
+- denne teksten kalles i mange forskjellige navn, for eksempel,  *kode*, *kildekode*, *programkode* eller bare *program*
+- med et *Java* *program* kan man også mene en fil, som inneholder symboler, som er tilpasset til å bli prosessert (les utført) på en regnemaskin, etter at den opprinnelige teksten har blitt oversatt (transformert, interpretert) til spesifikke symboler (*Java* *bytecode* med et filetternavn *.class*)
 
+* Om Java program (2)
+- `javac` `Main.java` returnerer ingen feilmeldinger i tilfelle filen `Main.java` er tom (det har en interpretatordesigner bestemt)
+- `javac` er en interpretator (fordi at utdata blir ikke direkte en utførbar objektfil, men en fil som inneholder noe som i Java tilfelle kalles for *bytecode*), og det kan også bli betraktet som et testverktøy (hovedsakelig for syntaks) under kompilering, eller i Java tilfelle interpretasjon (flere varianter på engelsk *compile-time*, *compile* *time*)
+- under utførelsen (mange varianter på engelsk *run-time*, *runtime*, *run* *time*) er det operativsystemets programmer, som kan betraktes som testverktøy
+- det som testes er at programmet har de nødvendige avhengighetene tilgjengelig og at den ikke gjør ulovlige operasjoner i forhold til maskinvare (først og fremst CPU og RAM; utføres i *brukermodus*) 
 
+* Om Java program (3)
+- hvis vi kun skriver inn en tom *public* main metode i en java-fil, som har et filetternavn *.java*
+.code mainonlymain.java
+- får vi denne meldingen fra Java interpretator: 
+.code stderronlymain.bash
 
+* Versjon 0.0 av MultiValutaApp
+.code cs000.java
+- Koden ligger i filsystemet med følgende stinavn `/Users/janisg/v21-is105/mvapp/devel0`
+- Kommandoen `ls` `/Users/janisg/v21-is105/mvapp/devel0` viser innholdet i mappen etter at koden er blitt skrevet og lagret i filsystemet med filnavn `MultiValutaApp.java` og kompilert til Java bytecode med kommandoen `javac` `MultiValutaApp.java`, som da har generert en fil med navn `MultiValutaApp.class`
+- Kommandoen `java` `MultiValutaApp` genererer en feil, som sendes til `stderr` strømmen (engelsk stream), som er alltid åpen i kommandofortolker:
+.code stderr000.bash
 
+* Versjon 0.1 av MultiValutaApp
+.code cs001.java
 
+* Versjon 0.2 av MultiValutaApp
+.code cs002.java
 
-
+* Om Versjon 0.2
+- `main` metoden er lagt til; den er en markør for kompilator som "sier" at dette blir et selvstendig program, dvs. ikke bibliotek, klasse eller pakke som kun kan brukes fra en kode med en `main` metode
+- `main` inneholder ingenting og denne versjonen vil kompilere feilfritt og utføre feilfritt
+- COMPILE-TIME: PASS
+- RUN-TIME:     PASS
