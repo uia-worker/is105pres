@@ -4,10 +4,62 @@ Intro git og Github
 Undervisningsteam IS-105 V21
 
 * Samarbeid om å skrive programmer
-Programvare som brukes av mange Homo sapiens (som operativsystemer, databasesystemer, utviklingsrammeverk) er et dynamisk artefakt, stadig under endring. Derfor blir det en nødvendighet å administrere *VERSJONER* av programvare.
+Programvare som brukes av mange Homo sapiens (som operativsystemer, databasesystemer, utviklingsrammeverk) er et dynamisk artefakt, stadig under endring. Det fører til at det finnes flere versjoner av programvare i aktiv bruk blant brukerne til envher tid. Derfor blir det en nødvendighet å administrere *VERSJONER* av programvare.
 
 .image git-flow-distributed-and-centralized.png 385 565
 Fra en webartikkel skrevet av Vincent Driessen 5. Januar 2010 [[https://nvie.com/posts/a-successful-git-branching-model/][A successful Git branching model]]. 
+
+* Alice og Bob 
+Navn som brukes ofte i tankeeksperimenter om systemer, hvor man bruker hypoteser, teorier og prinsipper for å tenke gjennom konsekvenser av en aktivitet. Spesielt kjente er Alice og Bob i tankeeksperimenter om utveksling av hemmelige meldinger ved hjelp av datasystemer. 
+Hvis det er behov for flere deltakere i et tankeeksperiment, er det mer variasjon i navn, men Carol, David, Eve og Frank er eksempler på slike. Se Wikipedia artikkelen [[https://en.wikipedia.org/wiki/Alice_and_Bob][Alice and Bob]] for flere detaljer.
+
+* Alice og Bob skriver artikkel om Java (1)
+La oss gjøre et tankeeksempriment om Alice og Bob, som ønsker å skrive en artikkel om nøkkelord `static` i Java programmeringsspråk sammen. Anta at Alice og Bob har kommunisert om dette ved å skrive brev til hverandre. De har avtalt at Alice skal skrive en liten utkast først og sende det til Bob for gjennomsyn og eventuell modifisering. Alice kaller sitt utkast STATIC-JAVA-v0.1. 
+
+* DIGRESJON (om praksis for versjonsadministrasjon)
+Artikler skiller seg fra programvare i at det vanligvis antas at en artikkel har en endelig versjon, dvs. en versjon som publiseres og etter det blir ikke endret, kun referert til. Noen kaller alle versjonene før den endelige versjonen for et UTKAST (eller DRAFT på engelsk). Med muligheter til å redigerer tekstinnhold direkte på WorldWideWeb (WWW), har det også blitt vanlig med en versjonshistorikk for artikler, med en mulighet for å gå tilbake til tidligere versjoner, hvis nødvendig. Hvor ofte slike versjoner mellomlagres kan både være bestemt av forfattere og et datasystem. Et datasystem kan, for eksempel, mellomlagre (man sier også *å tagge*, dvs. påføre en tagg) et dokument hvert 5. minutt. 
+Når man skriver programvare, brukes det flere skjemaer for en versjonsidentifikator. Man snakker om revisjonsnummer (revisjon i dette tilfelle må forstås som modifisering). 
+
+* Alice og Bob skriver artikkel om Java (2)
+Alice skriver i STATIC-JAVA-v0.1: "I datavitenskap har *Java* siden midten av 1990-tallet vært en betegnelse for både et varemerke (tilhørende Sun Microsystems og etterhvert Oracle), et programmeringsspråk, en platform og en arkitektur for databehandling i nettverk (applets)." Alice refererer til en artikkel på WWW, som beskriver de første årene til Java [[https://web.archive.org/web/20050420081440/http://java.sun.com/features/1998/05/birthday.html][JAVA TECHNOLOGY: THE EARLY YEARS]].
+Bob mottar brevet og ønsker gjerne å både kommentere brevet, foreslå endringer og legge til sin egen tekst.
+
+* Runde 1: Bob vil foreslå endringer i v0.1
+Bob kan samarbeide med Alice på forskjellige måter: 
+- (1) Bob kan skrive et nytt brev, hvor han bruker det Alice hadde skrevet og legger inn det han ønsker.
+- (2) Bob kan skrive en kommentar relatert til det Alice har skrevet og sende tilbake til Alice.
+- (3) Bob kan gjøre (2) og i tillegg legge til forslag for ny tekst og sende tilbae til Alice. 
+- (4) Bob kan gjøre (1) og i tillegg legge en forklaring på hva han har endret og hvorfor.
+Alice og Bob burde gå gjennom alle varianter, drøfte fordeler og ulemper (flere kan være kontekstavhengige) med disse og avtale et samarbeidsmønster. I mange prosjekter mangler på foran avtalte regler for samarbeid. Om det påvirker prosjektutfallet når to personer samarbeider om en artikkel (eller en innlevering av en besvarelse for en oppgave), kan bare spekuleres, men hvis Alice og Bob ønsker å implementere et dataprogram, som de kan bruke for å samarbeide, er det nødvendig med en formalisering av alle mulige samarbeidsmønstre (les samarbeidsalgoritmer). 
+
+* Dataprogrammer for å administrere en kildekode til et program
+Mye av programvareutvikling foregår åpent, dvs. alle som ønsker kan både lese, bruke (laste ned, kompilere eller interpretere og utføre) og modifisere kildekode (åpen kildekode programvare). Programvare betraktes ikke lenger noe som en dag blir ferdig utviklet, dvs. vil ha en endelig VERSJON.
+
+* Om static
+- statisk variabel i motsetning til en lokal variabel (automatisk variabel, fordi at minne for den blir allokert og deallokert automatisk og den blir relatert til avgrensningen: FUNKSJON)
+- i C, hvis man ikke initialiserer en variabel, den vil inneholde "søppelverdi" (i Golang får alle variabler en initiell verdi relatert til type)
+- statisk lagringsklasse
+
+* Diverse utdrag om static
+"In C, for example, the meaning of the reserved word static depends on the context of its appearance. If used on the definition of a variable inside a function, it means the variable is created at compile time. If used on the definition of a variable that is outside all functions, it means the variable is visible only in the file in which its definition appears; that is, it is not exported from that file."
+
+* K&R explain it in section A4.1 of "The C Programming Language".
+- Static is one of the two storage classes (the other being automatic). A static object keeps its value between invocations. The objects declared outside all blocks are always static and cannot be made automatic.
+- But, when the static keyword (big emphasis on it being used in code as a keyword) is used with a declaration, it gives that object internal linkage so it can only be used within that translation unit. But if the keyword is used in a function, it changes the storage class of the object (the object would only be visible within that function anyway). The opposite of static is the extern keyword, which gives an object external linkage.
+Peter Van Der Linden gives these two meanings in "Expert C Programming":
+- Inside a function, retains its value between calls.
+- At the function level, visible only in this file.
+
+
+* Runde 2: Alice vil svare Bob
+- avgrensninger kan være FIL, FUNKSJON, BLOKK, FUNKSJONSPROTOTYPE
+- har *static* noe å gjøre med avgrensninger? gjelder kun innen FIL?
+
+ 
+* Referanser
+Hanenberg S., 2010. [[https://www.ics.uci.edu/~jajones/INF102-S18/readings/23_hanenberg.pdf][An experiment ...]]
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7886953
+
 
 * Om git (1)
 - laget av Linus Torvalds i 2005 spesielt for utvikling av Linux kjerne (kernel.org)
@@ -30,13 +82,16 @@ Fra presentasjonen til Linus Torvalds 3. Mai 2007 [[https://www.youtube.com/watc
 - samarbeid med andre gruppemedlemmer er demonstrert i Github gjennom Issues og Pull Request
 - noen krav til hva som skal kodes? vi snakket om å skrive ut navn; er en annen oppgave mer hensiktsmessig?
 
-* Figur 2 (fra prosessen for å lage en ny repository)
+* Figur 2 
+.image github-createrepo-screenshot.png 550 450
+
+* Figur 3 (fra prosessen for å lage en ny repository)
 *repository* har ingen etablert norsk oversettelse. *programvarelager* brukes noen steder, men vi skal bruke *repository* eller en kortere versjon *repo* gjennomgående i IS-105.
 .image github-rett-etter-at-man-har-laget-en-ny-repo.png 450 850
 
 * Mulige scenarioer for feil
 - https://www.educative.io/edpresso/the-fatal-refusing-to-merge-unrelated-histories-git-error
-
+.image github-createrepo-screenshot.png 300 800
 * Case?
 - Multivaluta-applikasjon 
 - Overnatting Sevilla, Antall personer: 5, Pris per person: 1200 Euro, Totalt: 6000 Euro
@@ -86,3 +141,6 @@ Aktuelle bruksscenarioer (BS) for en multivaluta-applikasjon kan være:
 - `main` inneholder ingenting og denne versjonen vil kompilere feilfritt og utføre feilfritt
 - COMPILE-TIME: PASS
 - RUN-TIME:     PASS
+
+* C
+- [[https://gcc.gnu.org/onlinedocs/gcc/Option-Index.html][gcc alternativer]]
